@@ -9,7 +9,9 @@ NX.settings_file = SavePath .. "NX-Tweaks.json"
 NX.locale_file = NX.locale_path .. "en.json"
 
 NX.settings = {
-	disable_shaped_charges_during_stealth = true
+	disable_shaped_charges_during_stealth = true,
+	civilians_distinguish_detection = false,
+	civilians_display_intimidation = false,
 }
 
 -- no BLT, no MenuHelper ):

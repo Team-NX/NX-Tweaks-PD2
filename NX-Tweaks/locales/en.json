@@ -2,5 +2,11 @@
 	"nx_ssc": "NX-Tweaks",
 	
 	"nx_disable_shaped_charges_during_stealth_title": "Disable Shaped Charges During Stealth",
-	"nx_disable_shaped_charges_during_stealth_desc": "turn off to use shaped charges during stealth, how sneaky!"
+	"nx_disable_shaped_charges_during_stealth_desc": "turn off to use shaped charges during stealth, how sneaky!",
+	
+	"nx_civilians_distinguish_detection_title": "Civilians: Distinguish Detection",
+	"nx_civilians_distinguish_detection_desc": "changes the icon & color of the detection marker for civilians",
+	
+	"nx_civilians_display_intimidation_title": "Civilians: Display Intimidation",
+	"nx_civilians_display_intimidation_desc": "changes the icon & color of the marker for intimidated/dropped civilians"
 }

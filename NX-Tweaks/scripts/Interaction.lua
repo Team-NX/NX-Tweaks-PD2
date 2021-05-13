@@ -1,3 +1,5 @@
+-- disable_shaped_charges_during_stealth
+
 if string.lower(RequiredScript) == "lib/units/interactions/interactionext" then
 	local BaseInteraction_can_select_original = BaseInteractionExt.can_select
 	
