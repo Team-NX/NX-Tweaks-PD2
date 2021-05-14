@@ -3,12 +3,12 @@
 	"description": "This mod provides some smaller quality of life changes to improve your game experience (:                                        \n\nFeatures:\n- Disable Shaped Charges During Stealth\n- Civilians: Distinguish Detection\n- Civilians: Display Intimidation",
 	"author": "Luken",
 	"contact": "Discord @ Luken#1104",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"blt_version": 2,
 	"color": "0 0 0",
 	"image": "NX_1000px.png",
 	"priority": 0,
-	"hooks" : [
+	"hooks": [
 		{
 			"hook_id": "lib/managers/menumanager",
 			"script_path": "menu/Menu.lua"
@@ -22,11 +22,11 @@
 			"script_path": "scripts/GroupAIStateBase.lua"
 		}
 	],
-	"updates" : [
+	"updates": [
 		{
-			"identifier" : "nx-tweaks",
-			"host" : {
-				"meta" : "https://github.com/Team-NX/NX-Tweaks-PD2/raw/update/meta.json"
+			"identifier": "nx-tweaks",
+			"host": {
+				"meta": "https://github.com/Team-NX/NX-Tweaks-PD2/raw/update/meta.json"
 			}
 		}
 	]
