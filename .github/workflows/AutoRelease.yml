@@ -1,0 +1,84 @@
+# AutoRelease workflow to listen for tag creation & automatically upload a new release
+name: AutoRelease
+
+# run workflow on new version tag creation
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+# actual workflow, consists of single job 'release'
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    
+    steps:
+      #######
+      - name: Checking out repository
+        uses: actions/checkout@v2
+      
+      #######
+      - name: Extracting version from references
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      
+      #######
+      - name: Updating 'version' in 'mod.txt'
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const fs = require("fs")
+            
+            const modFileName = "./NX-Tweaks/mod.txt"
+            const modFile = fs.readFileSync(modFileName)
+            const modData = JSON.parse(modFile)
+            
+            modData.version = "${{ env.VERSION }}"
+            
+            fs.writeFileSync(modFileName, JSON.stringify(modData, null, "\t"))
+      
+      #######
+      - name: Archiving 'NX-Tweaks' folder
+        run: zip -r NX-Tweaks.zip NX-Tweaks
+      
+      #######
+      - name: Publishing a new release with 'NX-Tweaks.zip'
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v${{ env.VERSION }}"
+          prerelease: false
+          title: "Release v${{ env.VERSION }}"
+          files: NX-Tweaks.zip
+      
+      #######
+      - name: Switching branch to 'update'
+        run: |
+          git reset --hard
+          git fetch
+          git checkout update
+      
+      #######
+      - name: Updating 'meta.json'
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const fs = require("fs")
+            
+            const data = [{
+              "ident": "nx-tweaks",
+              "version": "${{ env.VERSION }}",
+              "download_url": "https://github.com/Team-NX/NX-Tweaks-PD2/releases/download/v${{ env.VERSION }}/NX-Tweaks.zip",
+              "patchnotes_url": "https://github.com/Team-NX/NX-Tweaks-PD2/releases/latest"
+            }]
+            
+            fs.writeFileSync("meta.json", JSON.stringify(data, null, "\t"))
+      
+      #######
+      - name: Pushing file changes
+        run: |
+          git config user.email "nx@lunati.cc"
+          git config user.name "NX"
+          git add meta.json
+          git commit -m "Updated to v${{ env.VERSION }}"
+          git push
