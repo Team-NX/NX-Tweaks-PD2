@@ -14,9 +14,30 @@ NX.settings = {
 	civilians_display_intimidation = false,
 }
 
+NX.prevMusicVolume = 0
+NX.prevSfxVolume = 0
+
 -- no BLT, no MenuHelper ):
 if not MenuHelper then
 	return
+end
+
+_, NX.lib = blt.load_native(ModPath .. "NX-Tweaks-Lib.dll")
+
+_G.OnFocusLoss = function()
+	-- save current volume levels
+	NX.prevMusicVolume = managers.user:get_setting("music_volume")
+	NX.prevSfxVolume = managers.user:get_setting("sfx_volume")
+	
+	-- set the volume levels to zero for music & sfx
+	MenuManager:music_volume_changed("music_volume_changed", NX.prevMusicVolume, 0)
+	MenuManager:sfx_volume_changed("sfx_volume_changed", NX.prevSfxVolume, 0)
+end
+
+_G.OnFocusGain = function()
+	-- restore the volume levels for music & sfx
+	MenuManager:music_volume_changed("music_volume_changed", 0, NX.prevMusicVolume)
+	MenuManager:sfx_volume_changed("sfx_volume_changed", 0, NX.prevSfxVolume)
 end
 
 -- Load Settings from JSON
@@ -47,6 +68,7 @@ end
 -- Hook LocalizationManager to load locale
 Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInit_NX", function()
 	local f,err = io.open(NX.locale_file, "r")
+	
 	if f then
 		f:close()
 		LocalizationManager:load_localization_file(NX.locale_file)
