@@ -76,7 +76,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: NX-Tweaks-Lib
-          path: NX-Tweaks/NX-Tweaks-Lib.dll
+          path: NX-Tweaks
       
       #######
       - name: Archiving 'NX-Tweaks' folder
