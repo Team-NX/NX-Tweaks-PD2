@@ -1,6 +1,6 @@
 {
 	"menu_id" : "nx_opt",
-	"title" : "nx_ssc",
+	"title" : "nx_title",
 	"back_callback" : "nx_save",
 	"parent_menu_id" : "blt_options",
 	"items" : []
