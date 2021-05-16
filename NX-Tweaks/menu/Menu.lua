@@ -10,8 +10,8 @@ NX.locale_file = NX.locale_path .. "en.json"
 
 NX.settings = {
 	disable_shaped_charges_during_stealth = true,
-	civilians_distinguish_detection = false,
-	civilians_display_intimidation = false,
+	civilians_distinguish_detection = true,
+	civilians_display_intimidation = true,
 	mute_out_of_focus = true,
 }
 
