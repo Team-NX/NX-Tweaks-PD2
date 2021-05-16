@@ -12,6 +12,7 @@ NX.settings = {
 	disable_shaped_charges_during_stealth = true,
 	civilians_distinguish_detection = false,
 	civilians_display_intimidation = false,
+	mute_out_of_focus = true,
 }
 
 NX.prevMusicVolume = 0
@@ -53,6 +54,8 @@ function NX:LoadSettings()
 		
 		file:close()
 	end
+	
+	NX.lib.toggle(NX.settings.mute_out_of_focus)
 end
 
 -- Save Settings to JSON
@@ -79,8 +82,10 @@ end)
 function MenuCallbackHandler:nx_toggle(item)
 	local index = item._parameters.name
 	
-	if NX.settings then
-		NX.settings[index] = item:value() == "on"
+	NX.settings[index] = item:value() == "on"
+	
+	if index == "mute_out_of_focus" then
+		NX.lib.toggle(NX.settings.mute_out_of_focus)
 	end
 end
 

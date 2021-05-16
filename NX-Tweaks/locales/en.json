@@ -8,5 +8,8 @@
 	"nx_civilians_distinguish_detection_desc": "changes the icon & color of the detection marker for civilians",
 	
 	"nx_civilians_display_intimidation_title": "Civilians: Display Intimidation",
-	"nx_civilians_display_intimidation_desc": "changes the icon & color of the marker for intimidated/dropped civilians"
+	"nx_civilians_display_intimidation_desc": "changes the icon & color of the marker for intimidated/dropped civilians",
+	
+	"nx_mute_out_of_focus_title": "Mute out of Focus",
+	"nx_mute_out_of_focus_desc": "completely mutes the game when out of focus/alt tabbed"
 }
