@@ -3,7 +3,7 @@
 	"description": "This mod provides some smaller quality of life changes to improve your game experience (:                                        \n\nFeatures:\n- Disable Shaped Charges During Stealth\n- Civilians: Distinguish Detection\n- Civilians: Display Intimidation",
 	"author": "Luken",
 	"contact": "Discord @ Luken#1104",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"blt_version": 2,
 	"color": "0 0 0",
 	"image": "NX_1000px.png",
